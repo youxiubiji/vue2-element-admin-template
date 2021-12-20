@@ -16,12 +16,21 @@
                             </el-input>
                         </el-form-item>
                         <el-form-item prop="password">
-                            <el-input class="login-input" placeholder="请输入密码" clearable show-password v-model="loginForm.password">
+                            <el-input
+                                class="login-input"
+                                placeholder="请输入密码"
+                                clearable
+                                show-password
+                                v-model="loginForm.password"
+                                @keyup.enter.native="handleLogin"
+                            >
                                 <img slot="prefix" class="input-icon" src="../../assets/password_new.png" alt="" />
                             </el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" round class="login-btn" @click="onSubmit">登录</el-button>
+                            <el-button :loading="loading" type="primary" round class="login-btn" @click.native.prevent="handleLogin">
+                                登录
+                            </el-button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -34,9 +43,12 @@ export default {
     name: 'Login',
     data() {
         return {
+            loading: false,
+            redirect: undefined,
+            otherQuery: {},
             loginForm: {
-                username: '',
-                password: '',
+                username: 'admin',
+                password: '123456',
             },
             rules: {
                 username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -44,8 +56,39 @@ export default {
             },
         }
     },
+    watch: {
+        $route: {
+            handler: function (route) {
+                const query = route.query
+                if (query) {
+                    this.redirect = query.redirect
+                    this.otherQuery = this.getOtherQuery(query)
+                }
+            },
+            immediate: true,
+        },
+    },
     methods: {
-        onSubmit() {},
+        handleLogin() {
+            this.loading = true
+            this.$store
+                .dispatch('user/login', this.loginForm)
+                .then(() => {
+                    this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                    this.loading = false
+                })
+                .catch(() => {
+                    this.loading = false
+                })
+        },
+        getOtherQuery(query) {
+            return Object.keys(query).reduce((acc, cur) => {
+                if (cur !== 'redirect') {
+                    acc[cur] = query[cur]
+                }
+                return acc
+            }, {})
+        },
     },
 }
 </script>

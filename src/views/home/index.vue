@@ -1,3 +1,6 @@
 <template>
-    <div>4545</div>
+    <div>
+        4545
+    </div>
 </template>
+<script>
