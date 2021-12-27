@@ -38,19 +38,31 @@ export const constantRoutes = [
                 path: 'home',
                 component: () => import('@/views/home/index'),
                 name: 'Home',
-                meta: { title: '首页', icon: 'dashboard', affix: true },
+                meta: { title: '首页', icon: 'home',affix: true},
             },
         ],
     },
     {
         path: '/documentation',
         component: Layout,
+        redirect: '/documentation/list',
+        name: 'Documentation',
+        meta: {
+          title: '文档',
+          icon: 'documentation'
+        },
         children: [
             {
-                path: 'index',
+                path: 'list',
                 component: () => import('@/views/documentation/index'),
-                name: 'Documentation',
-                meta: { title: 'Documentation', icon: 'documentation', affix: true },
+                name: 'Documentation_Index',
+                meta: { title: '文档列表',  },
+            },
+            {
+                path: 'add',
+                component: () => import('@/views/documentation/add'),
+                name: 'Documentation_add',
+                meta: { title: '添加文档' },
             },
         ],
     },

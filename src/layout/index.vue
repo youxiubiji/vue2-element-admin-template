@@ -1,9 +1,10 @@
 <template>
     <div :class="classObj" class="app-wrapper">
         <sidebar class="sidebar-container" />
-        <div class="main-container">
+        <div class="main-container hasTagsView">
             <div class="fixed-header">
                 <navbar />
+                <tags-view />
             </div>
             <app-main />
         </div>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import { AppMain, Navbar, Sidebar } from './components'
+import { AppMain, Navbar, Sidebar, TagsView } from './components'
 import { mapState } from 'vuex'
 
 export default {
@@ -20,6 +21,7 @@ export default {
         AppMain,
         Navbar,
         Sidebar,
+        TagsView,
     },
     computed: {
         ...mapState({

@@ -11,10 +11,11 @@ Vue.use(ElementUI)
 
 import './permission' // permission control
 import '@/styles/index.scss' // global css
-import '@/styles/font.css' // global css
+
+
 import '../mock/index'
 
-import './icons/index'
+import '@/icons'
 
 Vue.config.productionTip = false
 

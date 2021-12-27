@@ -3,7 +3,7 @@
         <div class="login-main">
             <div class="login-main_lf">
                 <div class="line"></div>
-                <div class="title">实时共享交换平台</div>
+                <div class="title">优秀笔记后台</div>
                 <div class="en">Real time shared switching platform</div>
             </div>
             <div class="login-main_rg">
@@ -70,6 +70,9 @@ export default {
     },
     methods: {
         handleLogin() {
+            if (!this.loginForm.username || !this.loginForm.password) {
+                return
+            }
             this.loading = true
             this.$store
                 .dispatch('user/login', this.loginForm)

@@ -2,11 +2,9 @@
     <div class="sidebar-logo-container" :class="{ collapse: collapse }">
         <transition name="sidebarLogoFade">
             <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-                <img v-if="logo" :src="logo" class="sidebar-logo" />
-                <h1 v-else class="sidebar-title">{{ title }}</h1>
+                <h1 class="sidebar-title">{{ introduction }}</h1>
             </router-link>
             <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-                <img v-if="logo" :src="logo" class="sidebar-logo" />
                 <h1 class="sidebar-title">{{ title }}</h1>
             </router-link>
         </transition>
@@ -24,8 +22,8 @@ export default {
     },
     data() {
         return {
-            title: '实时共享交换平台',
-            logo: '',
+            title: '优秀笔记后台',
+            introduction:'优秀'
         }
     },
 }
@@ -46,8 +44,7 @@ export default {
     width: 100%;
     height: 50px;
     line-height: 50px;
-    background: #039DE3;
-    // background: linear-gradient(0deg, #039DE3, #3B207D);
+    background: #243A80;
     text-align: center;
     overflow: hidden;
 
@@ -55,28 +52,16 @@ export default {
         height: 100%;
         width: 100%;
 
-        & .sidebar-logo {
-            width: 32px;
-            height: 32px;
-            vertical-align: middle;
-            margin-right: 12px;
-        }
-
         & .sidebar-title {
             display: inline-block;
             margin: 0;
-            color: #fff;
+            color: #ddd;
             font-weight: 600;
             line-height: 50px;
-            font-size: 14px;
-            font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+            font-size: 18px;
             vertical-align: middle;
-        }
-    }
-
-    &.collapse {
-        .sidebar-logo {
-            margin-right: 0px;
+            width: 100%;
+            text-align: center;
         }
     }
 }
