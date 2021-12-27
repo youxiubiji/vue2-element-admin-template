@@ -5,6 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? '/vue2-element-admin-template/' : '/',
     chainWebpack(config) {
         // set svg-sprite-loader
         config.module.rule('svg').exclude.add(resolve('src/icons')).end()
