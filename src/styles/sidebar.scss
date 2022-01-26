@@ -75,7 +75,9 @@
         background-color: $menuHover !important;
       }
     }
-
+    .is-active>.submenu-title-noDropdown {
+      background-color: red !important;
+    }
     .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
     }

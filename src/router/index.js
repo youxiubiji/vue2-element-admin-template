@@ -33,29 +33,7 @@ export const constantRoutes = [
                 path: 'dashboard',
                 name: 'Dashboard',
                 component: () => import('@/views/dashboard/index'),
-                meta: { title: 'Dashboard', icon: 'dashboard' },
-            },
-        ],
-    },
-
-    {
-        path: '/example',
-        component: Layout,
-        redirect: '/example/table',
-        name: 'Example',
-        meta: { title: 'Example', icon: 'el-icon-s-help' },
-        children: [
-            {
-                path: 'table',
-                name: 'Table',
-                component: () => import('@/views/table/index'),
-                meta: { title: 'Table', icon: 'table' },
-            },
-            {
-                path: 'tree',
-                name: 'Tree',
-                component: () => import('@/views/tree/index'),
-                meta: { title: 'Tree', icon: 'tree' },
+                meta: { title: '首页', icon: 'dashboard' },
             },
         ],
     },
@@ -68,7 +46,7 @@ export const constantRoutes = [
                 path: 'index',
                 name: 'Form',
                 component: () => import('@/views/form/index'),
-                meta: { title: 'Form', icon: 'form' },
+                meta: { title: '表单', icon: 'form' },
             },
         ],
     },
@@ -79,7 +57,7 @@ export const constantRoutes = [
         redirect: '/nested/menu1',
         name: 'Nested',
         meta: {
-            title: 'Nested',
+            title: '多级测试',
             icon: 'nested',
         },
         children: [
@@ -133,12 +111,12 @@ export const constantRoutes = [
     },
 
     {
-        path: 'external-link',
+        path: '/link',
         component: Layout,
         children: [
             {
-                path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-                meta: { title: 'External Link', icon: 'link' },
+                path: 'https://youxiubiji.com',
+                meta: { title: '测试外链', icon: 'link' },
             },
         ],
     },
