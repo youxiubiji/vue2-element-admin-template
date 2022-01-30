@@ -2,6 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
+//获取原型对象上的push函数
+const originalPush = Router.prototype.push
+//修改原型对象中的push方法
+Router.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 /* Layout */
 import Layout from '@/layout'
@@ -57,7 +63,7 @@ export const constantRoutes = [
         redirect: '/nested/menu1',
         name: 'Nested',
         meta: {
-            title: '多级测试',
+            title: '路由嵌套',
             icon: 'nested',
         },
         children: [
@@ -65,31 +71,31 @@ export const constantRoutes = [
                 path: 'menu1',
                 component: () => import('@/views/nested/menu1/index'), // Parent router-view
                 name: 'Menu1',
-                meta: { title: 'Menu1' },
+                meta: { title: '菜单1' },
                 children: [
                     {
                         path: 'menu1-1',
                         component: () => import('@/views/nested/menu1/menu1-1'),
                         name: 'Menu1-1',
-                        meta: { title: 'Menu1-1' },
+                        meta: { title: '菜单1-1' },
                     },
                     {
                         path: 'menu1-2',
                         component: () => import('@/views/nested/menu1/menu1-2'),
                         name: 'Menu1-2',
-                        meta: { title: 'Menu1-2' },
+                        meta: { title: '菜单1-2' },
                         children: [
                             {
                                 path: 'menu1-2-1',
                                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                                 name: 'Menu1-2-1',
-                                meta: { title: 'Menu1-2-1' },
+                                meta: { title: '菜单1-2-1' },
                             },
                             {
                                 path: 'menu1-2-2',
                                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                                 name: 'Menu1-2-2',
-                                meta: { title: 'Menu1-2-2' },
+                                meta: { title: '菜单1-2-2' },
                             },
                         ],
                     },
@@ -97,7 +103,7 @@ export const constantRoutes = [
                         path: 'menu1-3',
                         component: () => import('@/views/nested/menu1/menu1-3'),
                         name: 'Menu1-3',
-                        meta: { title: 'Menu1-3' },
+                        meta: { title: '菜单1-3' },
                     },
                 ],
             },
@@ -105,7 +111,7 @@ export const constantRoutes = [
                 path: 'menu2',
                 component: () => import('@/views/nested/menu2/index'),
                 name: 'Menu2',
-                meta: { title: 'menu2' },
+                meta: { title: '菜单2' },
             },
         ],
     },
